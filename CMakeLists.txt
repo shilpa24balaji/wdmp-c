@@ -21,6 +21,11 @@ add_definitions(-std=c99)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D_GNU_SOURCE -Werror -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_GNU_SOURCE -Werror -Wall")
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+set(CMAKE_MACOSX_RPATH 1)
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -undefined dynamic_lookup")
+endif()
+
 set(INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/_install)
 set(PREFIX_DIR ${CMAKE_CURRENT_BINARY_DIR}/_prefix)
 set(INCLUDE_DIR ${INSTALL_DIR}/include)
@@ -31,6 +36,7 @@ include_directories(${INCLUDE_DIR}
                     ${INCLUDE_DIR}/cimplog)
 				
 include_directories (SYSTEM /usr/include)
+link_directories ( ${LIBRARY_DIR})
 
 if (NOT BUILD_YOCTO)
 
