@@ -28,7 +28,7 @@
 
 void get_req_parse ()
 {
-    int i,paramCount;
+    int i,paramCount = 0;
     char *request = NULL;
     req_struct *reqObj = NULL;
     
@@ -2066,8 +2066,8 @@ void test_unknown_req_type()
 
 void get_large_parameter_req_parse()
 {
-        int i,paramCount;
-        char *request = NULL;
+        int i,paramCount = 0;
+	char *request = NULL;
         req_struct *reqObj = NULL;
 
         WdmpInfo("\n***************************************************** \n\n");

@@ -25,9 +25,10 @@ link_directories ( ${LIBRARY_DIR} )
 
 add_executable(simple simple.c ../src/wdmp-c.c ../src/wdmp_internal.c)
 
-target_link_libraries (simple  gcov
-                               cunit
+if (UNIX AND NOT APPLE)
+ target_link_libraries (simple  gcov rt)
+endif()
+ target_link_libraries (simple  cunit
                               -lcjson 
                               -lm
-							  -lcimplog
-							  rt)
+				 -lcimplog)
